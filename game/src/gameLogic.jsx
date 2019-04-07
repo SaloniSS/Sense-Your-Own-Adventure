@@ -6,9 +6,7 @@ import Sound from 'react-sound';
 export class GameText extends React.Component {
     speech = new Speech();
 
-    wrong = [];
-
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             currNode : {
