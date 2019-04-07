@@ -1,7 +1,10 @@
 import React from 'react';
 import rnl2b from 'react-newline-to-break';
+import Speech from 'speak-tts';
 
 export class GameText extends React.Component {
+    speech = new Speech();
+
     constructor(props){
         super(props);
         this.state = {
@@ -9,7 +12,28 @@ export class GameText extends React.Component {
             input : '',
             optMessage:''
         };
+        this.textToSpeechInit();
         this.changeNode(props.wholeData);
+    }
+
+    textToSpeechInit() {
+        this.speech.init({
+            'volume': 1,
+            'lang': 'en-GB',
+            'rate': 1,
+            'pitch': 1,
+            'voice':'Google UK English Male',
+            'splitSentences': true
+        }).then((data) => {
+            // The "data" object contains the list of available voices and the voice synthesis params
+            console.log("Speech is ready, voices are available", data)
+        }).catch(e => {
+            console.error("An error occured while initializing : ", e)
+        })
+    }
+
+    speak(elem) {
+        this.speech.speak({ text: elem });
     }
 
     changeNode(elem) {
@@ -33,6 +57,7 @@ export class GameText extends React.Component {
             this.changeNode(this.state.currNode.left);
         }
         else {
+            // this.speak("Input not recognized. Please enter either " + this.state.currNode.right.data.name + " or " + this.state.currNode.left.data.name);
             this.setState( {
                 optMessage: "Input not recognized. Please enter either " + this.state.currNode.right.data.name + " or " + this.state.currNode.left.data.name
             })
@@ -56,6 +81,9 @@ export class GameText extends React.Component {
                 <div className="message-box">
                     <div className="message-text">
                         <p className="upper">
+                            {this.state.currNode.data.story}
+                        </p>
+                        <p className="lower">
                             Thank you for playing!
                         </p>
                     </div>
@@ -64,8 +92,9 @@ export class GameText extends React.Component {
          }
         else {
             let text = this.state.currNode.data.story;
+            this.speak(text);
             text = rnl2b(text);
-
+            this.speak("Type " + this.state.currNode.right.data.name + " or " + this.state.currNode.left.data.name);
 
             return (
                 <div className="container">
@@ -82,7 +111,7 @@ export class GameText extends React.Component {
                             <p className="optMessage">{this.state.optMessage}</p>
                         </div>
                         <form className="form" onSubmit={ this.handleSubmit }>
-                            <input type="text" className="input" id="choice" autoFocus onChange={this.handleChange.bind(this)} />
+                            <input type="text" className="input" id="choice" value={this.state.input} autoFocus onChange={this.handleChange.bind(this)} />
                             <input type="submit" className="submit" value="Enter" />
                         </form>
                     </div>
