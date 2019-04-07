@@ -26,10 +26,10 @@ body {
 
   position: fixed;
   bottom: 0;
-  padding: 2rem 6rem;
+  padding: 1rem 4rem 2rem 4rem;
 
   .message-text {
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: black;
     text-transform: uppercase;
     font-weight: bold;
@@ -41,14 +41,16 @@ body {
     }
   }
 
-  input[type=text], select {
+  .input {
     width: 100%;
     padding: 12px 20px;
-    margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 0.25rem solid black;
     border-radius: 4px;
     box-sizing: border-box;
+    font-size: 2rem;
+    text-align: center;
+    text-transform: uppercase;
   }
 
 }
