@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import './App.scss'
+import {GameText} from './gameLogic';
+import Data from './data.json';
+import './App.scss';
 
 class App extends Component {
 	render() {
 		return (
-			<div className="message-box">
+			<GameText wholeData={Data}/>
+			/* <div className="message-box">
 				<p>
 					You are stranded on what looks like a lonely island. It is pretty sunny outside.
 					You look around but no ones around you.
@@ -15,7 +18,7 @@ class App extends Component {
 				</p>
 
 				<input type="text" id="choice" placeholder="Your Choice.." />
-			</div>
+			</div> */
 		);
 	}
 }
