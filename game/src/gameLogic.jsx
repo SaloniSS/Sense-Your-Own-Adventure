@@ -186,6 +186,18 @@ export class GameText extends React.Component {
 		}
 	};
 
+	endGame = () => {
+		let text = ("There are no words to practice. Thank you for playing!");
+		if (text !== this.state.lastSpoken) {
+			this.setState({
+				lastSpoken: text
+			});
+			this.speech.speak({
+				text: text
+			});
+		}
+	};
+
     lowerMessage = (
 		<span>
 		</span>
@@ -212,9 +224,7 @@ export class GameText extends React.Component {
 		    );
 	    } else {
 	    	if (this.wrongWords.length === 0) {	// no more words to practice
-				this.speech.speak({
-					text: "There are no words to practice. Thank you for playing!"
-				});
+				this.endGame();
 				this.lowerMessage = (
 					<span>There are no words to practice. Thank you for playing!</span>);
 				this.form = (
