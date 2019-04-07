@@ -2,6 +2,7 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import mongoose from 'mongoose';
+import parser from './parser';
 
 let app = express();
 
@@ -18,7 +19,7 @@ const connectWithRetry = () => {
 		} else {
 			console.error('Connected to mongo\n');
 
-
+			app.use('/', parser);
 
 		}
 	});

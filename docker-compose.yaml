@@ -1,0 +1,57 @@
+version: "3"
+
+services:
+
+  game:
+    image: node
+    restart: always
+    user: node
+    volumes:
+      - ./game:/home/node/app
+    working_dir: /home/node/app
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+    command: npm start
+
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - ./data:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - webappnetwork
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    depends_on:
+      - mongo
+    ports:
+      - 8081:8081
+    networks:
+      - webappnetwork
+
+  parser:
+    image: node
+    restart: always
+    user: node
+    depends_on:
+      - mongo
+    volumes:
+      - ./parser:/home/node/app
+    working_dir: /home/node/app
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3001:3000
+    networks:
+      - webappnetwork
+    command: npm start
+
+networks:
+  webappnetwork:
+    driver: bridge
