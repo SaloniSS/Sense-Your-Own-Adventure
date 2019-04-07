@@ -39,6 +39,11 @@ export class GameText extends React.Component {
         this.setState({storyText: Node.target.value});
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault();
+    };
+
+
     render() {
         let text = this.state.currNode.data.story;
         text = rnl2b(text);
@@ -50,7 +55,7 @@ export class GameText extends React.Component {
                         { text }
                     </p>
                 </div>
-                <form className="form">
+                <form className="form" onSubmit={ this.handleSubmit }>
                     <input type="text" className="input" id="choice" onChange={this.handleChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}/>
                     <input type="submit" className="submit" value="Enter" />
                 </form>

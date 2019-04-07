@@ -41,16 +41,26 @@ body {
     }
   }
 
-  .input {
-    width: 100%;
-    padding: 12px 20px;
-    display: inline-block;
-    border: 0.25rem solid black;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 2rem;
-    text-align: center;
-    text-transform: uppercase;
+  .form {
+    display: flex;
+
+    > input {
+      flex-grow: 1;
+      border: 0.25rem solid black;
+      font-size: 1.5rem;
+      text-align: center;
+      text-transform: uppercase;
+      border-radius: 0.25rem;
+      color: black;
+      font-weight: bold;
+    }
+
+    .submit {
+      flex-grow: 0;
+      padding: 1rem;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
   }
 
 }
