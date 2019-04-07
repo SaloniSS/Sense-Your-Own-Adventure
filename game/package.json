@@ -6,6 +6,7 @@
     "node-sass": "^4.11.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-newline-to-break": "^1.0.6",
     "react-scripts": "2.1.8",
     "typescript": "^3.4.2"
   },
