@@ -5,6 +5,8 @@ import Sound from 'react-sound';
 
 export class GameText extends React.Component {
     speech = new Speech();
+    wrongWords = [];
+    wrong = false;	// flag/bool to catch wrong words and add to array
 
     constructor(props) {
         super(props);
@@ -23,6 +25,7 @@ export class GameText extends React.Component {
         };
         this.textToSpeechInit();
 	    this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleSubmitPrac = this.handleSubmitPrac.bind(this);
 	    this.handleChange = this.handleChange.bind(this);
     }
 
@@ -103,14 +106,23 @@ export class GameText extends React.Component {
 	        const left = (this.state.currNode.left.data.name).toLowerCase().replace(/[^a-z]+/g, '');
 	        const right = (this.state.currNode.right.data.name).toLowerCase().replace(/[^a-z]+/g, '');
 	        if (input === right) {
+	        	if(this.wrong === true) {	// if flagged that typed wrong then got correct the next time, add to practice list
+	        		this.wrongWords.push(this.state.currNode.right.data);
+	        		this.wrong = false;
+				}
 	            this.changeNode(this.state.currNode.right);
 	        }
 	        else if (input === left) {
+				if(this.wrong === true) {
+					this.wrongWords.push(this.state.currNode.left.data);
+					this.wrong = false;
+				}
 	            this.changeNode(this.state.currNode.left);
 	        }
 	        else {
+	        	this.wrong = true;
 	            this.setState( {
-	                optMessage: "Input not recognized. Please enter either " + this.state.currNode.right.data.name + " or " + this.state.currNode.left.data.name
+	                optMessage: "Wrong spelling. Please enter either " + this.state.currNode.right.data.name + " or " + this.state.currNode.left.data.name
 	            }, () => {
 	                const elem = this.state.currNode;
 		            const text = 'Type. ' + elem.right.data.name + '. or. ' + elem.left.data.name;
@@ -132,6 +144,47 @@ export class GameText extends React.Component {
 	        this.checkInput();
         }
     };
+
+	handleSubmitPrac(event) {
+		event.preventDefault();
+		this.setState({
+			optMessage: ''
+		}, () => {
+			const userInput = (this.state.input).toLowerCase().replace(/[^a-z]+/g, '');
+			const answer = (this.wrongWords[0].name).toLowerCase().replace(/[^a-z]+/g, '');
+			if (userInput === answer) {
+				this.wrongWords.shift();
+			} else {
+				let spelling = '';
+				for (const c of this.wrongWords[0].name) spelling += (c.toUpperCase() + '.');
+				this.setState({
+					optMessage: "You spelled the word wrong again. " + this.wrongWords[0].name + " is spelled " + spelling + " Please retype it again."
+				}, () => {
+					this.speech.speak({
+						text: "You spelled the word wrong again. " + this.wrongWords[0].name + " is spelled " + spelling + " Please retype it again."
+					});
+				});
+			}
+			this.setState({
+				input: ''
+			});
+		});
+	}
+
+	speakWord = () => {
+		const elem = this.wrongWords[0];
+		if (elem.name) {
+			let text = ("You missed the word " + elem.name + ". Please retype it for practice.");
+			if (text !== this.state.lastSpoken) {
+				this.setState({
+					lastSpoken: text
+				});
+				this.speech.speak({
+					text: text
+				});
+			}
+		}
+	};
 
     lowerMessage = (
 		<span>
@@ -158,14 +211,25 @@ export class GameText extends React.Component {
 			    </form>
 		    );
 	    } else {
-		    this.lowerMessage = (
-			    <span>
-			    </span>
-		    );
-		    this.form = (
-			    <span>
-			    </span>
-		    );
+	    	if (this.wrongWords.length === 0) {	// no more words to practice
+				this.lowerMessage = (
+					<span>There are no words to practice. Thank you for playing!</span>);
+				this.form = (
+					<span></span>);
+			}
+	    	else {		// words to practice
+				this.speakWord();		// ADDED SPEAK WORD HERE
+				this.lowerMessage = (
+					<span>You missed the word {this.wrongWords[0].name}. Please retype it for practice.</span>
+				);
+				this.form = (
+					<form className="form" onSubmit={this.handleSubmitPrac}>
+						<input type="text" className="input" id="choice" autoFocus
+							   onChange={this.handleChange} value={this.state.input} tabIndex={1}/>
+						<input type="submit" className="submit" value="Enter" tabIndex={-1}/>
+					</form>
+				);
+			}
 	    }
     };
 

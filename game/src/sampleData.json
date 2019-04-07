@@ -1,0 +1,50 @@
+{
+  "data": {
+    "name": "Begin",
+    "story": "Do you want to walk to the forest or walk along the shore?",
+    "image": "",
+    "sound": ""
+  },
+  "_id": "5ca94986b2654c0d92b186e4",
+  "right": {
+    "data": {
+      "name": "Beach",
+      "story": "Do you want to ride on the boat or stay on the beach?",
+      "image": "",
+      "sound": ""
+    },
+    "_id": "5ca949ca207b190dfdc455dc",
+    "__v": 0
+  },
+  "left": {
+    "data": {
+      "name": "Forest",
+      "story": "Which item do you want to choose?",
+      "image": "",
+      "sound": ""
+    },
+    "_id": "5ca949c9207b190dfdc455db",
+    "left": {
+      "data": {
+        "name": "Match Stick",
+        "story": "Keep it or throw it away?",
+        "image": "",
+        "sound": ""
+      },
+      "_id": "5ca95040afd1b7124613a398",
+      "__v": 0
+    },
+    "right": {
+      "data": {
+        "name": "Jacket",
+        "story": "What do you want to do? Shake the tree or throw the stick at them?",
+        "image": "",
+        "sound": ""
+      },
+      "_id": "5ca95046afd1b7124613a399",
+      "__v": 0
+    },
+    "__v": 0
+  },
+  "__v": 0
+}
