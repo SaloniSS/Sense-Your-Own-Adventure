@@ -14,16 +14,12 @@ export class GameText extends React.Component {
         this.setState({input: event.target.value});
     };
 
-    handleKeyPress = (event) => {       // stop getting user input on enter
-        if(event.key === 'Enter'){
-            this.checkInput();
-        }
-    };
-
     checkInput = () => {
         console.log(this.state.currNode.right.data.name);
-        if(this.state.input === this.state.currNode.right.data.name) {
-            this.setState({currNode: this.state.currNode.right});
+        if (this.state.input === this.state.currNode.right.data.name) {
+            this.setState({
+                currNode: this.state.currNode.right
+            });
             this.nextPart();
         } else alert("not whoa");
         console.log("changed: " + this.state.currNode.right.data.name);
@@ -38,6 +34,7 @@ export class GameText extends React.Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        this.checkInput();
     };
 
 
@@ -53,7 +50,7 @@ export class GameText extends React.Component {
                     </p>
                 </div>
                 <form className="form" onSubmit={ this.handleSubmit }>
-                    <input type="text" className="input" id="choice" onChange={this.handleChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}/>
+                    <input type="text" className="input" id="choice" onChange={this.handleChange.bind(this)} />
                     <input type="submit" className="submit" value="Enter" />
                 </form>
             </div>
