@@ -41,7 +41,7 @@ const create = (req, res) => {
 };
 
 const parse = (req, res) => {
-	StoryElement.findOne({ '_id': '5ca94986b2654c0d92b186e4' }).then((doc) => {
+	StoryElement.findOne({ '_id': '5ca97b13e1c56f0038b228bb' }).then((doc) => {
 		const data = JSON.stringify(doc);
 		fs.writeFile('data.json', data, {}, (err) => {
 			if (err) {
