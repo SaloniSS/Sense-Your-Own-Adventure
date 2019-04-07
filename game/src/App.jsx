@@ -19,7 +19,10 @@ class App extends Component {
 						{ text }
 					</p>
 				</div>
-				<input type="text" id="choice" placeholder="Your Choice.." />
+				<div>
+					<input className="input" type="text" id="choice" placeholder="Enter Here" />
+					<input className="submit" value="Enter" type="submit" />
+				</div>
 			</div>
 		);
 	}
