@@ -74,8 +74,13 @@ body {
         border: 0.25rem solid black;
         text-align: center;
         border-radius: 0.25rem;
-        color: black;
+        color: red;
         background: white;
+      }
+
+      .input {
+        text-transform: uppercase;
+        letter-spacing: 1rem;
       }
 
       .submit {
