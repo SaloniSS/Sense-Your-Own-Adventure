@@ -1,4 +1,5 @@
 import React from 'react';
+import rnl2b from 'react-newline-to-break';
 
 export class GameText extends React.Component {
     constructor(props){
@@ -24,10 +25,17 @@ export class GameText extends React.Component {
     }
 
     render() {
+        let text = this.state.currNode.data.story;
+        text = rnl2b(text);
+
         return (
-            <div>
-                <p>{this.state.currNode.data.story}</p>
-                <input onChange={this.handleChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}/>
+            <div className="message-box">
+                <div className="message-text">
+                    <p>
+                        { text }
+                    </p>
+                </div>
+                <input type="text" id="choice" onChange={this.handleChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}/>
             </div>
         );
     }
