@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 const connectWithRetry = () => {
-	return mongoose.connect('mongodb://mongo:27017/rooms', { useNewUrlParser: true }, (err) => {
+	return mongoose.connect('mongodb://mongo:27017/hackunt2019', { useNewUrlParser: true }, (err) => {
 		if (err) {
 			console.error('\nFailed to connect to mongo on startup - retrying in 5 sec\n', err, '\n');
 			setTimeout(connectWithRetry, 5000);
