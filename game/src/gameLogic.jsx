@@ -9,6 +9,13 @@ export class GameText extends React.Component {
             input : '',
             optMessage:''
         };
+        this.changeNode(props.wholeData);
+    }
+
+    changeNode(elem) {
+        this.setState({
+            currNode: elem
+        });
     }
 
     handleChange = (event) => {
@@ -20,14 +27,10 @@ export class GameText extends React.Component {
             optMessage: ''
         });
         if (this.state.input === this.state.currNode.right.data.name) {
-            this.setState({
-                currNode: this.state.currNode.right
-            });
+            this.changeNode(this.state.currNode.right);
         }
         else if (this.state.input === this.state.currNode.left.data.name) {
-            this.setState({
-                currNode: this.state.currNode.left
-            });
+            this.changeNode(this.state.currNode.left);
         }
         else {
             this.setState( {
@@ -39,7 +42,6 @@ export class GameText extends React.Component {
         });
         //Else if >50% close to one word say “Did you mean to type (child keyword)? (Keyword) is spelled (). Please retype.”
         //Add incorrect Node’s data to an array
-        //Else say “Input not recognized. Please enter either (list child keywords).”
     };
 
     handleSubmit = (event) => {
