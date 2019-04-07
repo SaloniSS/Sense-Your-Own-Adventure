@@ -43,16 +43,19 @@ export class GameText extends React.Component {
         text = rnl2b(text);
 
         return (
-            <div className="message-box">
-                <div className="message-text">
-                    <p>
-                        { text }
-                    </p>
+            <div className="container">
+                <img className="image" src={process.env.PUBLIC_URL + "/images/beach.jpg"} />
+                <div className="message-box">
+                    <div className="message-text">
+                        <p>
+                            { text }
+                        </p>
+                    </div>
+                    <form className="form" onSubmit={ this.handleSubmit }>
+                        <input type="text" className="input" id="choice" onChange={this.handleChange.bind(this)} />
+                        <input type="submit" className="submit" value="Enter" />
+                    </form>
                 </div>
-                <form className="form" onSubmit={ this.handleSubmit }>
-                    <input type="text" className="input" id="choice" onChange={this.handleChange.bind(this)} />
-                    <input type="submit" className="submit" value="Enter" />
-                </form>
             </div>
         );
     }

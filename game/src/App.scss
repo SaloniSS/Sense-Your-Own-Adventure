@@ -3,64 +3,59 @@
   font-family: sans-serif;
 }
 
-html, body{
-  height: 100%;
-}
-
 body {
-  background-image: url("images/beach.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: white;
   margin: 0;
 }
 
-.message-box {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 
-  background-color: white;
-
-  position: fixed;
-  bottom: 0;
-  padding: 1rem 4rem 2rem 4rem;
-
-  .message-text {
-    font-size: 1.5rem;
-    color: black;
-    text-transform: uppercase;
-    font-weight: bold;
-    text-align: center;
-
-    span {
-      display: block;
-      margin-bottom: 2rem;
-    }
+  .image {
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
   }
 
-  .form {
-    display: flex;
+  .message-box {
+    width: 100%;
+    background-color: white;
+    padding: 1rem 4rem 2rem 4rem;
 
-    > input {
-      flex-grow: 1;
-      border: 0.25rem solid black;
+    .message-text {
       font-size: 1.5rem;
-      text-align: center;
-      text-transform: uppercase;
-      border-radius: 0.25rem;
       color: black;
+      text-transform: uppercase;
       font-weight: bold;
+      text-align: center;
+
+      span {
+        display: block;
+      }
     }
 
-    .submit {
-      flex-grow: 0;
-      padding: 1rem;
-      margin-left: 1rem;
-      cursor: pointer;
+    .form {
+      display: flex;
+
+      > input {
+        flex-grow: 1;
+        border: 0.25rem solid black;
+        font-size: 1.5rem;
+        text-align: center;
+        text-transform: uppercase;
+        border-radius: 0.25rem;
+        color: black;
+        font-weight: bold;
+      }
+
+      .submit {
+        flex-grow: 0;
+        padding: 1rem;
+        margin-left: 1rem;
+        cursor: pointer;
+      }
     }
+
   }
-
 }
