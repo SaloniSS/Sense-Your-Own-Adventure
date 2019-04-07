@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro:600');
+
 * {
   box-sizing: border-box;
-  font-family: sans-serif;
 }
 
 body {
@@ -22,40 +23,64 @@ body {
   }
 
   .message-box {
+    * {
+      font-size: 16pt;
+      font-family: 'Source Serif Pro', serif;
+      font-weight: 600;
+    }
+
     display: block;
     width: 100%;
     background-color: white;
     padding: 1rem 4rem 2rem 4rem;
 
     .message-text {
-      font-size: 1.5rem;
       color: black;
-      text-transform: uppercase;
-      font-weight: bold;
       text-align: center;
 
-      span {
+      > * {
+        margin: 0.5rem 0;
       }
+
+      .upper {
+        span {
+          display: block;
+          margin-bottom: 0.5rem;
+        }
+      }
+
+      .lower {
+        * {
+          font-size: 24pt;
+        }
+
+        .keyWord {
+          color: red;
+        }
+        margin-bottom: 1rem;
+      }
+
     }
 
     .form {
+      * {
+        font-size: 24pt;
+      }
+
       display: flex;
 
       > input {
         flex-grow: 1;
         border: 0.25rem solid black;
-        font-size: 1.5rem;
         text-align: center;
-        text-transform: uppercase;
         border-radius: 0.25rem;
         color: black;
         background: white;
-        font-weight: bold;
       }
 
       .submit {
         flex-grow: 0;
-        padding: 1rem;
+        padding: 0.5rem;
         margin-left: 1rem;
         cursor: pointer;
       }
