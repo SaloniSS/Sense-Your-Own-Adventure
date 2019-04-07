@@ -8,15 +8,18 @@ export class GameText extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            currNode : props.wholeData,
+            currNode : {
+            	data: {}
+            },
             input : '',
             optMessage:''
         };
-        this.textToSpeechInit();
-        this.changeNode(props.wholeData);
+        this.textToSpeechInit(() => {
+	        this.changeNode(props.wholeData); // cb is the call back function passed
+        });
     }
 
-    textToSpeechInit() {
+    textToSpeechInit(cb) {
         this.speech.init({
             'volume': 1,
             'lang': 'en-GB',
@@ -27,14 +30,12 @@ export class GameText extends React.Component {
         }).then((data) => {
             // The "data" object contains the list of available voices and the voice synthesis params
             console.log("Speech is ready, voices are available", data)
+	        cb();
         }).catch(e => {
             console.error("An error occured while initializing : ", e)
-        })
+        });
     }
 
-    speak(elem) {
-        this.speech.speak({ text: elem });
-    }
 
     changeNode(elem) {
         this.setState({
@@ -76,6 +77,9 @@ export class GameText extends React.Component {
 
 
     render() {
+	    let text = this.state.currNode.data.story;
+	    text = rnl2b(text);
+
         let lowerMessage = (
             <div>
             </div>
@@ -99,11 +103,6 @@ export class GameText extends React.Component {
 	        );
         }
 
-        let text = this.state.currNode.data.story;
-        text = rnl2b(text);
-
-	    this.speak(text);
-	    this.speak("Type " + this.state.currNode.right.data.name + " or " + this.state.currNode.left.data.name);
 
         return (
             <div className="container">
@@ -122,6 +121,6 @@ export class GameText extends React.Component {
                 </div>
             </div>
         );
-        
+
     }
 }
