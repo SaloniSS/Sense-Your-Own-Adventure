@@ -21,22 +21,19 @@ export class GameText extends React.Component {
     };
 
     checkInput = () => {
-        /*
-        Compare input (after pressing enter) to both child’s keywords
-        If the input matches one of the child node’s, set Node equal to the right child node
-        Call nextPart(Node)
-        Else if >50% close to one word say “Did you mean to type (child keyword)? (Keyword) is spelled (). Please retype.”
-        Add incorrect Node’s data to an array
-        Else say “Input not recognized. Please enter either (list child keywords).”
-         */
-        if(this.state.input == this.state.currNode.right.data.name) {
+        console.log(this.state.currNode.right.data.name);
+        if(this.state.input === this.state.currNode.right.data.name) {
             this.setState({currNode: this.state.currNode.right});
-            alert(this.state.currNode.data.name);
+            this.nextPart();
         } else alert("not whoa");
+        console.log("changed: " + this.state.currNode.right.data.name);
+        //Else if >50% close to one word say “Did you mean to type (child keyword)? (Keyword) is spelled (). Please retype.”
+        //Add incorrect Node’s data to an array
+        //Else say “Input not recognized. Please enter either (list child keywords).”
     };
 
-    nextPart(Node) {
-        this.setState({storyText: Node.target.value});
+    nextPart() {
+
     }
 
     handleSubmit = (event) => {
