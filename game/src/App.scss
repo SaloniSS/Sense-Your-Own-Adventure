@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 html, body{
@@ -16,16 +17,6 @@ body {
   margin: 0;
 }
 
-div {
-  margin: 0;
-  font-family: exo, sans-serif;
-  font-size: 25px;
-  color: black;
-  text-transform: uppercase;
-  font-weight: bold;
-  text-align: center;
-}
-
 .message-box {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -35,16 +26,29 @@ div {
 
   position: fixed;
   bottom: 0;
-  padding: 4rem;
+  padding: 2rem 6rem;
 
-}
+  .message-text {
+    font-size: 2rem;
+    color: black;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
 
-input[type=text], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+    span {
+      display: block;
+      margin-bottom: 2rem;
+    }
+  }
+
+  input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
 }
