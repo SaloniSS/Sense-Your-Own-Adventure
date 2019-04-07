@@ -115,7 +115,6 @@ export class GameText extends React.Component {
 	                optMessage: "Input not recognized. Please enter either " + this.state.currNode.right.data.name + " or " + this.state.currNode.left.data.name
 	            }, () => {
 	                const elem = this.state.currNode;
-		            const text = 'Type ' + elem.right.data.name + ' or ' + elem.left.data.name;
 		            const text = 'Type. ' + elem.right.data.name + '. or. ' + elem.left.data.name;
 					this.speech.speak({
 						text: text
