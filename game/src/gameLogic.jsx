@@ -6,6 +6,8 @@ import Sound from 'react-sound';
 export class GameText extends React.Component {
     speech = new Speech();
 
+    wrong = [];
+
     constructor(props){
         super(props);
         this.state = {
@@ -74,7 +76,7 @@ export class GameText extends React.Component {
 	    if (elem.data.story) {
 		    let text = elem.data.story;
 		    if (elem.left !== undefined && elem.right !== undefined) {
-			    text += 'Type ' + elem.right.data.name + ' or ' + elem.left.data.name;
+			    text += 'Type. ' + elem.right.data.name + '. or. ' + elem.left.data.name;
 		    }
 		    if (text !== this.state.lastSpoken) {
 		    	this.setState({
@@ -114,6 +116,7 @@ export class GameText extends React.Component {
 	            }, () => {
 	                const elem = this.state.currNode;
 		            const text = 'Type ' + elem.right.data.name + ' or ' + elem.left.data.name;
+		            const text = 'Type. ' + elem.right.data.name + '. or. ' + elem.left.data.name;
 					this.speech.speak({
 						text: text
 					});
