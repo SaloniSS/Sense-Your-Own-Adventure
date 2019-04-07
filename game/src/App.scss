@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html, body{
   height: 100%;
 }
@@ -9,11 +13,11 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-color: white;
+  margin: 0;
 }
 
 div {
   margin: 0;
-  padding: 4rem;
   font-family: exo, sans-serif;
   font-size: 25px;
   color: black;
@@ -31,6 +35,8 @@ div {
 
   position: fixed;
   bottom: 0;
+  padding: 4rem;
+
 }
 
 input[type=text], select {
