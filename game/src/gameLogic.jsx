@@ -64,22 +64,26 @@ export class GameText extends React.Component {
             let text = this.state.currNode.data.story;
             text = rnl2b(text);
 
+
             return (
-                <div className="message-box">
-                    <div className="message-text">
-                        <p className="upper">
-                            {text}
-                        </p>
-                        <p className="lower">
-                            Type <span className="keyWord">{this.state.currNode.right.data.name}</span> or <span
-                            className="keyWord">{this.state.currNode.left.data.name}</span>
-                        </p>
-                        <p className="optMessage">{this.state.optMessage}</p>
+                <div className="container">
+                    <img className="image" src={process.env.PUBLIC_URL + "/images/beach.jpg"} />
+                    <div className="message-box">
+                        <div className="message-text">
+                            <p className="upper">
+                                {text}
+                            </p>
+                            <p className="lower">
+                                Type <span className="keyWord">{this.state.currNode.right.data.name}</span> or <span
+                                className="keyWord">{this.state.currNode.left.data.name}</span>
+                            </p>
+                            <p className="optMessage">{this.state.optMessage}</p>
+                        </div>
+                        <form className="form" onSubmit={ this.handleSubmit }>
+                            <input type="text" className="input" id="choice" onChange={this.handleChange.bind(this)} />
+                            <input type="submit" className="submit" value="Enter" />
+                        </form>
                     </div>
-                    <form className="form" onSubmit={this.handleSubmit}>
-                        <input type="text" className="input" id="choice" onChange={this.handleChange.bind(this)}/>
-                        <input type="submit" className="submit" value="Enter"/>
-                    </form>
                 </div>
             );
         }
