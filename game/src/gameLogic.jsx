@@ -49,7 +49,10 @@ export class GameText extends React.Component {
                         { text }
                     </p>
                 </div>
-                <input type="text" class="input" id="choice" onChange={this.handleChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}/>
+                <form className="form">
+                    <input type="text" className="input" id="choice" onChange={this.handleChange.bind(this)} onKeyPress={this.handleKeyPress.bind(this)}/>
+                    <input type="submit" className="submit" value="Enter" />
+                </form>
             </div>
         );
     }
