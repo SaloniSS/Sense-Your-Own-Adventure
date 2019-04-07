@@ -13,7 +13,8 @@ export class GameText extends React.Component {
         this.state = {
             currNode : {
             	data: {
-            		sound: "undefined.wav"
+            		sound: "undefined.wav",
+					image: "splash.png"
 	            },
 	            left: props.wholeData,
 	            right: props.wholeData
