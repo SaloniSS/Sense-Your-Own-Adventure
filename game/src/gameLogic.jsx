@@ -30,7 +30,8 @@ export class GameText extends React.Component {
         Else say “Input not recognized. Please enter either (list child keywords).”
          */
         if(this.state.input == this.state.currNode.right.data.name) {
-            alert("whoa");
+            this.setState({currNode: this.state.currNode.right});
+            alert(this.state.currNode.data.name);
         } else alert("not whoa");
     };
 
